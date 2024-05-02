@@ -30,7 +30,7 @@ RUN sourec root/.bashrc
 RUN mkdir -p root/.embulk/bin/jruby && \
     curl -o root/.embulk/bin/jruby/jruby-complete-9.4.6.0.jar -L "https://repo1.maven.org/maven2/org/jruby/jruby-complete/9.4.6.0/jruby-complete-9.4.6.0.jar"
 COPY . .
-
+RUN rm -rf embulk.properties
 RUN mkdir result/
 
 RUN chmod +x .
