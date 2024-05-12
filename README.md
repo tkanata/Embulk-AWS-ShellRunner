@@ -7,3 +7,6 @@ AWS上でシェルスクリプトを用いてEmbulkを実行できることを�
 
 # buildしたimageをcontainerとして実行
 `docker run amazon-linux-embulk`
+
+# containerに入る
+`docker run --rm -t -i amazon-linux-embulk /bin/bash`
