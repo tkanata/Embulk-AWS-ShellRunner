@@ -23,14 +23,15 @@ RUN yum install -y tzdata && \
 # Embulkのインストール
 ARG embulk_version=0.11.0
 COPY embulk.properties root/.embulk/
-RUN mkdir curl --create-dirs -o root/.embulk/bin/embulk/embulk-${embulk_version}.jar -L "https://dl.embulk.org/embulk-${embulk_version}.jar"
+RUN curl --create-dirs -o root/.embulk/bin/embulk/embulk-${embulk_version}.jar -L "https://dl.embulk.org/embulk-${embulk_version}.jar"
 RUN chmod +x root/.embulk/bin/embulk
-RUN echo 'export PATH="$HOME/.embulk/bin:$PATH"' >> root/.bashrc
-RUN sourec root/.bashrc 
+RUN echo 'export PATH="/root/.embulk/bin:$PATH"' >> root/.bashrc
+RUN source root/.bashrc 
 RUN mkdir -p root/.embulk/bin/jruby && \
-    curl -o root/.embulk/bin/jruby/jruby-complete-9.4.6.0.jar -L "https://repo1.maven.org/maven2/org/jruby/jruby-complete/9.4.6.0/jruby-complete-9.4.6.0.jar"
+    curl -o root/.embulk/bin/jruby/jruby-complete-9.4.4.0.jar -L "https://repo1.maven.org/maven2/org/jruby/jruby-complete/9.4.4.0/jruby-complete-9.4.4.0.jar"
 COPY . .
 RUN rm -rf embulk.properties
+ENV PATH="/root/.embulk/bin:${PATH}"
 RUN mkdir result/
 
 RUN chmod +x .
