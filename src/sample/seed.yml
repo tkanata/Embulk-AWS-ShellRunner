@@ -1,0 +1,5 @@
+in:
+  type: file
+  path_prefix: '/Users/t.kanata/Programming/theorem/Embulk-AWS-ShellRunner/src/./sample/csv/sample_'
+out:
+  type: stdout
